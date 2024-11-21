@@ -1,0 +1,55 @@
+{
+    "job": {
+        "settings": {
+            "speed": {
+                "byte": -1,
+                "record": 10000,
+                "channel": 4
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": {
+            "reader": {
+                "name": "mysqlreader",
+                "parameter": {
+                    "username": "root",
+                    "password": "xxxxxxx",
+                    "column": [
+                        "*"
+                    ],
+                    "connection": {
+                        "table": [
+                            "$table"
+                        ],
+                        "jdbcUrl": "jdbc:mysql://localhost:2206/perceive?useUnicode=true&characterEncoding=UTF-8",
+                        "driver": "com.mysql.cj.jdbc.Driver"
+                    },
+                    "where": "deleted = 0"
+                }
+            },
+            "writer": {
+                "name": "mysqlwriter",
+                "parameter": {
+                    "writeMode": "update",
+                    "username": "root",
+                    "password": "xxxxxxxx",
+                    "column": [
+                        "*"
+                    ],
+                    "session": [],
+                    "connection": {
+                        "jdbcUrl": "jdbc:mysql://localhost:3306/perceive?useUnicode=true&characterEncoding=UTF-8",
+                        "table": [
+                            "$table"
+                        ],
+                        "driver": "com.mysql.cj.jdbc.Driver"
+                    }
+                }
+            },
+            "transformer": []
+        }
+    }
+}

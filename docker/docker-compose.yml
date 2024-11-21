@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  sync-jobs:
+    image: sync-jobs:1.0.1
+    container_name: sync-jobs
+    volumes:
+      - ./sync-jobs:/opt/sync-jobs
+    environment:
+      - 'TZ=Asia/Shanghai'
+  redis-shake:
+    image: redisshake:v4.2.1
+    container_name: redis-shake
+    volumes:
+      - ./redis-shake.toml:/etc/shake.toml
+    environment:
+      - 'TZ=Asia/Shanghai'
+  mongo-shake:
+    image: mongoshake:v2.8.4
+    container_name: mongo-shake
+    ports:
+      - '19101:9101'
+      - '19100:9100'
+    volumes:
+      - ./mongo-shake.conf:/opt/mongo-shake/collector.conf
+    environment:
+      - 'TZ=Asia/Shanghai'
+
+
